@@ -4,9 +4,11 @@ version = "0.1.0"
 description = ""
 authors = ["mohnen <markus.mohnen@gmail.com>"]
 readme = "README.md"
+package-mode = false
+
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 
 
 [tool.poetry.group.dev.dependencies]

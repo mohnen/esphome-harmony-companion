@@ -1,5 +1,5 @@
 #include "esphome/core/log.h"
-#include "empty_spi_component.h"
+#include "harmony-companion-hub.h"
 
 namespace esphome {
     namespace harmony_companion_hub
