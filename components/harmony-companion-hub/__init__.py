@@ -15,6 +15,12 @@ HarmonyCompanionHub = harmony_companion_hub_ns.class_(
     "HarmonyCompanionHub", cg.Component, spi.SPIDevice
 )
 
+cg.add_library(
+    name="RF24",
+    repository="https://github.com/nRF24/RF24.git",
+    version="1.4.11",
+)
+
 CONFIG_SCHEMA = (
     cv.Schema({
         cv.GenerateID(): cv.declare_id(HarmonyCompanionHub),
