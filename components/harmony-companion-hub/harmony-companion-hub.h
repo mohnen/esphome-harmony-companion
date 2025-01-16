@@ -15,6 +15,12 @@ namespace esphome {
       void setup() override;
       void loop() override;
       void dump_config() override;
+      void set_csn_pin(GPIOPin *pin) { this->csn_pin_ = pin; }
+      void set_ce_pin(GPIOPin *pin) { this->ce_pin_ = pin; }
+
+    protected:
+      GPIOPin *csn_pin_;
+      GPIOPin *ce_pin_;
     };
 
   } // namespace harmony_companion_hub

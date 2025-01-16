@@ -3,6 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import spi
 from esphome.const import CONF_ID
 from esphome import pins
+from esphome.cpp_helpers import gpio_pin_expression
 
 DEPENDENCIES = ["spi"]
 
@@ -30,3 +31,5 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await spi.register_spi_device(var, config)
+    cg.add(var.set_csn_pin(await gpio_pin_expression(config[CSN_PIN])))
+    cg.add(var.set_ce_pin(await gpio_pin_expression(config[CE_PIN])))
