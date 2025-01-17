@@ -3,6 +3,9 @@
 #include "esphome/core/component.h"
 #include "esphome/components/spi/spi.h"
 
+#include <nRF24L01.h>
+#include <RF24.h>
+
 namespace esphome {
   namespace harmony_companion_hub
   {
@@ -21,6 +24,7 @@ namespace esphome {
     protected:
       GPIOPin *csn_pin_;
       GPIOPin *ce_pin_;
+      RF24 radio_;
     };
 
   } // namespace harmony_companion_hub

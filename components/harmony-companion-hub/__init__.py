@@ -5,14 +5,17 @@ from esphome.const import CONF_ID
 from esphome import pins
 from esphome.cpp_helpers import gpio_pin_expression
 
-DEPENDENCIES = ["spi"]
-
 CSN_PIN = "csn_pin"
 CE_PIN = "ce_pin"
 
 harmony_companion_hub_ns = cg.esphome_ns.namespace("harmony_companion_hub")
 HarmonyCompanionHub = harmony_companion_hub_ns.class_(
     "HarmonyCompanionHub", cg.Component, spi.SPIDevice
+)
+
+cg.add_library(
+    name="SPI",
+    version="2.0"
 )
 
 cg.add_library(
@@ -33,7 +36,6 @@ CONFIG_SCHEMA = (
 
 
 async def to_code(config):
-    print(config)
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await spi.register_spi_device(var, config)
