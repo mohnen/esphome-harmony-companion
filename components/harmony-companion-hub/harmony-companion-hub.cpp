@@ -14,7 +14,10 @@ namespace esphome {
                                 esphome::spi::Utility::get_pin_no(this->csn_pin_));
             if (!this->radio_.begin()) {
                 ESP_LOGE(TAG, "Failed to start radio");
+                this->mark_failed();
+                return
             }
+            ESP_LOGCONFIG(TAG, "Radio started succesfully");
         }
 
         void HarmonyCompanionHub::loop() {
