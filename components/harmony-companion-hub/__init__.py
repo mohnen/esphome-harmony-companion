@@ -7,6 +7,7 @@ from esphome.cpp_helpers import gpio_pin_expression
 
 CSN_PIN = "csn_pin"
 CE_PIN = "ce_pin"
+ADDRESS = "address"
 
 harmony_companion_hub_ns = cg.esphome_ns.namespace("harmony_companion_hub")
 HarmonyCompanionHub = harmony_companion_hub_ns.class_(
@@ -28,7 +29,8 @@ CONFIG_SCHEMA = (
     cv.Schema({
         cv.GenerateID(): cv.declare_id(HarmonyCompanionHub),
         cv.Required(CSN_PIN): pins.gpio_output_pin_schema,
-        cv.Required(CE_PIN): pins.gpio_output_pin_schema
+        cv.Required(CE_PIN): pins.gpio_output_pin_schema,
+        cv.Optional(ADDRESS, default=0): cv.hex_uint64_t,
     })
     .extend(cv.COMPONENT_SCHEMA)
     .extend(spi.spi_device_schema(cs_pin_required=False))
@@ -41,3 +43,4 @@ async def to_code(config):
     await spi.register_spi_device(var, config)
     cg.add(var.set_csn_pin(await gpio_pin_expression(config[CSN_PIN])))
     cg.add(var.set_ce_pin(await gpio_pin_expression(config[CE_PIN])))
+    cg.add(var.set_address(config[ADDRESS]))

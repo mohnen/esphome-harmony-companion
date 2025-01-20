@@ -39,6 +39,7 @@ harmony-companion-hub:
   id: harmony_companion_hub_1
   ce_pin: GPIO4
   csn_pin: GPIO2
+  address: 0x44D2964B09
 
 spi:
   - clk_pin: GPIO18

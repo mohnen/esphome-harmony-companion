@@ -5,7 +5,6 @@ namespace esphome {
     namespace harmony_companion_hub
     {
 
-        static const char *TAG = "harmony-companion-hub.component";
         void HarmonyCompanionHub::setup() {
             ESP_LOGCONFIG(TAG, "harmony-companion-hub setup()");
             this->ce_pin_->setup();
@@ -15,7 +14,7 @@ namespace esphome {
             if (!this->radio_.begin()) {
                 ESP_LOGE(TAG, "Failed to start radio");
                 this->mark_failed();
-                return
+                return;
             }
             ESP_LOGCONFIG(TAG, "Radio started succesfully");
         }
@@ -28,6 +27,7 @@ namespace esphome {
             LOG_PIN("  CE Pin: ", this->ce_pin_);
             LOG_PIN("  CSN Pin: ", this->csn_pin_);
             ESP_LOGCONFIG(TAG, "  Radio available: %s", this->radio_.isChipConnected()?"Yes":"No");
+            ESP_LOGCONFIG(TAG, "  Address: 0x%llX", this->address_);
         }
 
     } // namespace harmony_companion_hub
